@@ -1,6 +1,6 @@
 
 const generateBtn = document.getElementById('generate-btn');
-const numberSpans = document.querySelectorAll('.number');
+const lottoSetsContainer = document.getElementById('lotto-sets-container');
 const toggleSwitch = document.getElementById('checkbox');
 const currentTheme = localStorage.getItem('theme');
 
@@ -24,15 +24,29 @@ function switchTheme(e) {
 toggleSwitch.addEventListener('change', switchTheme, false);
 
 generateBtn.addEventListener('click', () => {
-    const lottoNumbers = new Set();
-    while (lottoNumbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        lottoNumbers.add(randomNumber);
+    lottoSetsContainer.innerHTML = ''; // Clear previous sets
+
+    const colors = ['#FFD700', '#ADFF2F', '#87CEEB', '#FF6347', '#DA70D6', '#BA55D3']; // Gold, GreenYellow, SkyBlue, Tomato, Orchid, MediumPurple
+
+    for (let i = 0; i < 5; i++) { // Generate 5 sets
+        const lottoNumbers = new Set();
+        while (lottoNumbers.size < 6) { // Each set has 6 numbers
+            const randomNumber = Math.floor(Math.random() * 45) + 1; // Numbers from 1 to 45
+            lottoNumbers.add(randomNumber);
+        }
+
+        const sortedNumbers = Array.from(lottoNumbers).sort((a, b) => a - b);
+
+        const lottoSetDiv = document.createElement('div');
+        lottoSetDiv.classList.add('lotto-set');
+
+        sortedNumbers.forEach((number, index) => {
+            const numberSpan = document.createElement('span');
+            numberSpan.classList.add('number');
+            numberSpan.textContent = number;
+            numberSpan.style.backgroundColor = colors[index % colors.length]; // Apply distinct color
+            lottoSetDiv.appendChild(numberSpan);
+        });
+        lottoSetsContainer.appendChild(lottoSetDiv);
     }
-
-    const sortedNumbers = Array.from(lottoNumbers).sort((a, b) => a - b);
-
-    numberSpans.forEach((span, index) => {
-        span.textContent = sortedNumbers[index];
-    });
 });

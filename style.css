@@ -3,9 +3,9 @@
     --body-bg-color: #121212;
     --body-text-color: #ffffff;
     --container-bg-color: transparent;
-    --h1-text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #00ffde, 0 0 70px #00ffde, 0 0 80px #00ffde, 0 0 100px #00ffde, 0 0 150px #00ffde;
-    --number-bg-color: #333;
-    --number-box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ffde, 0 0 20px #00ffde, 0 0 25px #00ffde, 0 0 30px #00ffde, 0 0 35px #00ffde;
+    --h1-text-shadow: none; /* Removed glow effect */
+    /* --number-bg-color: #333; */ /* Removed, now handled by JS */
+    --number-box-shadow: none; /* Removed glow effect */
     --btn-bg-color: #00ffde;
     --btn-text-color: #121212;
     --btn-box-shadow: 0 0 5px #00ffde, 0 0 10px #00ffde, 0 0 15px #00ffde;
@@ -16,9 +16,9 @@ body.light-mode {
     --body-bg-color: #f0f0f0;
     --body-text-color: #333;
     --container-bg-color: #ffffff;
-    --h1-text-shadow: 0 0 5px #333, 0 0 10px #333;
-    --number-bg-color: #e0e0e0;
-    --number-box-shadow: 0 0 5px #ccc, 0 0 10px #ccc;
+    --h1-text-shadow: none; /* Removed glow effect */
+    /* --number-bg-color: #e0e0e0; */ /* Removed, now handled by JS */
+    --number-box-shadow: none; /* Removed glow effect */
     --btn-bg-color: #333;
     --btn-text-color: #f0f0f0;
     --btn-box-shadow: 0 0 5px #333;
@@ -44,6 +44,7 @@ body {
     padding: 2rem;
     border-radius: 15px;
     transition: background-color 0.3s;
+    max-width: 90%; /* Allow container to be wider for multiple sets */
 }
 
 h1 {
@@ -52,38 +53,38 @@ h1 {
     text-shadow: var(--h1-text-shadow);
 }
 
-.lotto-numbers {
+#lotto-sets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Space between each set */
+    margin-bottom: 2rem;
+}
+
+.lotto-set {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    padding: 10px;
+    border: 1px solid var(--body-text-color); /* Add a subtle border for each set */
+    border-radius: 10px;
 }
+
 
 .number {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: var(--number-bg-color);
+    /* background-color: var(--number-bg-color); */ /* Removed, now handled by JS */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
     box-shadow: var(--number-box-shadow);
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        box-shadow: var(--number-box-shadow);
-    }
-    to {
-        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00ffde, 0 0 40px #00ffde, 0 0 50px #00ffde, 0 0 60px #00ffde, 0 0 70px #00ffde;
-    }
 }
 
 body.light-mode .number {
-    animation: none; /* Or a different animation for light mode */
+    animation: none; /* No animation for light mode, already handled by removing glow */
 }
 
 
