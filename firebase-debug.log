@@ -1,0 +1,33 @@
+[debug] [2026-02-15T19:03:19.030Z] ----------------------------------------------------------------------
+[debug] [2026-02-15T19:03:19.032Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/gm9mcvzb17vv8cla08khrg29vxn3sq4r-firebase-tools-15.1.0/lib/node_modules/firebase-tools/lib/bin/firebase.js login
+[debug] [2026-02-15T19:03:19.033Z] CLI Version:   15.1.0
+[debug] [2026-02-15T19:03:19.033Z] Platform:      linux
+[debug] [2026-02-15T19:03:19.033Z] Node Version:  v20.19.1
+[debug] [2026-02-15T19:03:19.033Z] Time:          Sun Feb 15 2026 19:03:19 GMT+0000 (Coordinated Universal Time)
+[debug] [2026-02-15T19:03:19.033Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-15T19:03:19.042Z] No OAuth tokens found
+[debug] [2026-02-15T19:03:19.042Z] No OAuth tokens found
+[error] Failed to fetch Firebase Project from current Studio Workspace: Unable to refresh auth: not yet authenticated.
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[info] 
+[info] i  To change your preferences at any time, run `firebase logout` and `firebase login` again. 
+[debug] [2026-02-15T19:03:41.314Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2026-02-15T19:03:41.315Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"ca663248-bcff-450e-ac37-4b2cb2c19eac"}
+[debug] [2026-02-15T19:03:41.709Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2026-02-15T19:03:41.709Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"xngEotwz8cw4Nw8etG3szjFT1hNYrBo1DENVNh7973M"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    CA663
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=0RJDsXVhwWWOP44CmaXzS1sMpm3gRy_048b_DfU1Kso&session=ca663248-bcff-450e-ac37-4b2cb2c19eac&attest=xngEotwz8cw4Nw8etG3szjFT1hNYrBo1DENVNh7973M
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
