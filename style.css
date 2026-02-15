@@ -1,165 +1,166 @@
 :root {
-    --body-bg-color: #121212;
-    --body-text-color: #ffffff;
-    --container-bg-color: transparent;
-    --h1-text-shadow: none; /* Removed glow effect */
-    /* --number-bg-color: #333; */ /* Removed, now handled by JS */
-    --number-box-shadow: none; /* Removed glow effect */
-    --btn-bg-color: #00ffde;
-    --btn-text-color: #121212;
-    --btn-box-shadow: 0 0 5px #00ffde, 0 0 10px #00ffde, 0 0 15px #00ffde;
-    --body-bg-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  --bg-1: #071229;
+  --bg-2: #102a43;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --text-main: #f8fbff;
+  --text-sub: #c3d3ea;
+  --btn: #ffb703;
+  --btn-hover: #ffca3a;
 }
 
-body.light-mode {
-    --body-bg-color: #f0f0f0;
-    --body-text-color: #333;
-    --container-bg-color: #ffffff;
-    --h1-text-shadow: none; /* Removed glow effect */
-    /* --number-bg-color: #e0e0e0; */ /* Removed, now handled by JS */
-    --number-box-shadow: none; /* Removed glow effect */
-    --btn-bg-color: #333;
-    --btn-text-color: #f0f0f0;
-    --btn-box-shadow: 0 0 5px #333;
-    --body-bg-image: none;
+* {
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--body-bg-color);
-    color: var(--body-text-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: var(--body-bg-image);
-    transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at top right, #16355c 0%, transparent 45%),
+    linear-gradient(145deg, var(--bg-1), var(--bg-2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
 }
 
 .container {
-    text-align: center;
-    background-color: var(--container-bg-color);
-    padding: 2rem;
-    border-radius: 15px;
-    transition: background-color 0.3s;
-    max-width: 90%; /* Allow container to be wider for multiple sets */
-    margin-bottom: 2rem; /* Add some space at the bottom of the container */
+  width: min(900px, 100%);
 }
 
 h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    text-shadow: var(--h1-text-shadow);
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-#lotto-sets-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; /* Space between each set */
-    margin-bottom: 2rem;
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
 }
 
-.lotto-set {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 10px;
-    border: 1px solid var(--body-text-color); /* Add a subtle border for each set */
-    border-radius: 10px;
-    flex-wrap: wrap; /* Allow numbers to wrap in smaller screens */
+.card + .card {
+  margin-top: 16px;
 }
 
-
-.number {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    /* background-color: var(--number-bg-color); */ /* Removed, now handled by JS */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    box-shadow: var(--number-box-shadow);
+h2 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  color: var(--text-sub);
 }
 
-body.light-mode .number {
-    animation: none; /* No animation for light mode, already handled by removing glow */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
+.card-header h2 {
+  margin: 0;
+}
 
 #generate-btn {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background-color: var(--btn-bg-color);
-    border: none;
-    border-radius: 5px;
-    color: var(--btn-text-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--btn-box-shadow);
+  border: none;
+  background: var(--btn);
+  color: #1c1c1c;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 #generate-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 10px #00ffde, 0 0 20px #00ffde, 0 0 30px #00ffde;
+  background: var(--btn-hover);
 }
 
-/* Theme Switcher Styles */
-.theme-switch-wrapper {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
+.summary {
+  margin: 0 0 12px;
+  font-weight: 700;
 }
 
-.theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
+.numbers-row,
+.lotto-set {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.theme-switch input {
-    display:none;
+#lotto-sets-container {
+  display: grid;
+  gap: 10px;
 }
 
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
+.lotto-set {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.04);
 }
 
-.slider:before {
-    background-color: white;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
+.set-label {
+  min-width: 62px;
+  font-size: 0.92rem;
+  color: var(--text-sub);
+  font-weight: 700;
 }
 
-input:checked + .slider {
-    background-color: #2196F3;
+.number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #132238;
+  background: linear-gradient(160deg, #ffffff, #c9def8);
 }
 
-input:checked + .slider:before {
-    transform: translateX(26px);
+.number.bonus {
+  background: linear-gradient(160deg, #ffe29a, #ffc046);
+  color: #4e3000;
 }
 
-.slider.round {
-    border-radius: 34px;
+.plus-sign {
+  font-weight: 800;
+  margin: 0 2px;
 }
 
-.slider.round:before {
-    border-radius: 50%;
+.loading,
+.error {
+  margin: 0;
+  color: var(--text-sub);
+}
+
+.source {
+  margin: 14px 2px 0;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.source a {
+  color: #ffd166;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 14px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
