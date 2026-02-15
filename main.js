@@ -4,12 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.getElementById("generate-btn");
   const lottoSetsContainer = document.getElementById("lotto-sets-container");
   const numberTemplate = document.getElementById("number-template");
+  const themeToggle = document.getElementById("theme-toggle");
 
-  const latestApiUrl = "https://api.lotto-haru.kr/win/analysis.json";
+  const latestJsonpUrl = "https://api.lotto-haru.kr/win/analysis.js";
+  const THEME_KEY = "theme-mode";
+
+  function getBallRangeClass(number) {
+    if (number <= 10) return "range-1";
+    if (number <= 20) return "range-2";
+    if (number <= 30) return "range-3";
+    if (number <= 40) return "range-4";
+    return "range-5";
+  }
 
   function createNumberBall(number, extraClass = "") {
     const node = numberTemplate.content.firstElementChild.cloneNode(true);
     node.textContent = String(number);
+    node.classList.add(getBallRangeClass(number));
     if (extraClass) {
       node.classList.add(extraClass);
     }
@@ -47,13 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchLatestResult() {
     try {
-      const response = await fetch(latestApiUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
-      const latest = Array.isArray(data) ? data[0] : null;
+      const payload = await fetchLatestResultByJsonp();
+      const latest =
+        payload && Array.isArray(payload.data) ? payload.data[0] : null;
 
       if (!latest || !Array.isArray(latest.ball)) {
         throw new Error("Invalid response format");
@@ -87,8 +94,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function fetchLatestResultByJsonp() {
+    return new Promise((resolve, reject) => {
+      const callbackName = `lottoCb_${Date.now()}`;
+      const script = document.createElement("script");
+      const timer = setTimeout(() => {
+        cleanup();
+        reject(new Error("JSONP request timeout"));
+      }, 8000);
+
+      function cleanup() {
+        clearTimeout(timer);
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+        delete window[callbackName];
+      }
+
+      window[callbackName] = (data) => {
+        cleanup();
+        resolve(data);
+      };
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error("Failed to load JSONP script"));
+      };
+
+      script.src = `${latestJsonpUrl}?callback=${callbackName}`;
+      document.body.appendChild(script);
+    });
+  }
+
+  function applyTheme(theme) {
+    document.body.classList.toggle("day-mode", theme === "day");
+    themeToggle.textContent = theme === "day" ? "Night" : "Day";
+  }
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const currentTheme = savedTheme || (prefersLight ? "day" : "night");
+    applyTheme(currentTheme);
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDay = document.body.classList.contains("day-mode");
+    const nextTheme = isDay ? "night" : "day";
+    localStorage.setItem(THEME_KEY, nextTheme);
+    applyTheme(nextTheme);
+  });
+
   generateBtn.addEventListener("click", renderRecommendedSets);
 
+  initTheme();
   fetchLatestResult();
   renderRecommendedSets();
 });

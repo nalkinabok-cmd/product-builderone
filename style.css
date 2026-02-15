@@ -7,10 +7,25 @@
   --text-sub: #c3d3ea;
   --btn: #ffb703;
   --btn-hover: #ffca3a;
+  --ball-bg: #ffffff;
+  --ball-text: #1a2435;
 }
 
 * {
   box-sizing: border-box;
+}
+
+body.day-mode {
+  --bg-1: #f6fbff;
+  --bg-2: #d9eaff;
+  --card-bg: rgba(255, 255, 255, 0.84);
+  --card-border: rgba(4, 48, 87, 0.2);
+  --text-main: #102437;
+  --text-sub: #3a536b;
+  --btn: #073b4c;
+  --btn-hover: #0f4e64;
+  --ball-bg: #ffffff;
+  --ball-text: #102437;
 }
 
 body {
@@ -30,10 +45,31 @@ body {
   width: min(900px, 100%);
 }
 
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
 h1 {
-  margin: 0 0 20px;
-  text-align: center;
+  margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+#theme-toggle {
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+body.day-mode #theme-toggle {
+  background: #ffffff;
 }
 
 .card {
@@ -120,13 +156,35 @@ h2 {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  color: #132238;
-  background: linear-gradient(160deg, #ffffff, #c9def8);
+  color: var(--ball-text);
+  background: var(--ball-bg);
+  border: 3px solid transparent;
 }
 
 .number.bonus {
-  background: linear-gradient(160deg, #ffe29a, #ffc046);
-  color: #4e3000;
+  background: #fff6d6;
+  border-color: #ffb703;
+  color: #5c3700;
+}
+
+.number.range-1 {
+  border-color: #ffd166;
+}
+
+.number.range-2 {
+  border-color: #00a6fb;
+}
+
+.number.range-3 {
+  border-color: #ef476f;
+}
+
+.number.range-4 {
+  border-color: #8d99ae;
+}
+
+.number.range-5 {
+  border-color: #06d6a0;
 }
 
 .plus-sign {
@@ -153,6 +211,11 @@ h2 {
 @media (max-width: 640px) {
   body {
     padding: 14px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .card {
