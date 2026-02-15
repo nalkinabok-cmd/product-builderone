@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     generateBtn.addEventListener('click', () => {
         lottoSetsContainer.innerHTML = ''; // Clear previous sets
 
-        const colors = ['#FFD700', '#ADFF2F', '#87CEEB', '#FF6347', '#DA70D6', '#BA55D3']; // Gold, GreenYellow, SkyBlue, Tomato, Orchid, MediumPurple
+        // Updated vibrant color palette
+        const colors = ['#FF4136', '#2ECC40', '#007BFF', '#FF851B', '#B10DC9', '#FFDC00']; // Red, Green, Blue, Orange, Purple, Yellow
 
         for (let i = 0; i < 5; i++) { // Generate 5 sets
             const lottoNumbers = new Set();
