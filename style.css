@@ -5,8 +5,8 @@
   --card-border: rgba(255, 255, 255, 0.2);
   --text-main: #f8fbff;
   --text-sub: #c3d3ea;
-  --btn: #ffb703;
-  --btn-hover: #ffca3a;
+  --btn: #00c2ff;
+  --btn-hover: #3ad6ff;
   --ball-bg: #ffffff;
   --ball-text: #1a2435;
 }
@@ -105,15 +105,21 @@ h2 {
 #generate-btn {
   border: none;
   background: var(--btn);
-  color: #1c1c1c;
+  color: #ffffff;
   font-weight: 700;
   padding: 10px 14px;
   border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 194, 255, 0.35);
 }
 
 #generate-btn:hover {
   background: var(--btn-hover);
+}
+
+body.day-mode #generate-btn {
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(7, 59, 76, 0.2);
 }
 
 .summary {
