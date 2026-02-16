@@ -51,6 +51,7 @@ body {
   align-items: center;
   gap: 14px;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow wrapping for multiple buttons */
 }
 
 h1 {
@@ -66,6 +67,7 @@ h1 {
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 body.day-mode #theme-toggle {
@@ -215,7 +217,7 @@ body.day-mode #generate-btn {
 }
 
 /* Contact form specific styles */
-.contact-button {
+.contact-button, .animal-test-button {
   background-color: #ffb703; /* Highlight color */
   color: #333; /* Darker text for contrast */
   font-weight: 700;
@@ -229,20 +231,20 @@ body.day-mode #generate-btn {
   transition: background-color 0.3s ease;
 }
 
-.contact-button:hover {
+.contact-button:hover, .animal-test-button:hover {
   background-color: #ffa000; /* Darker hover */
 }
 
-body.day-mode .contact-button {
+body.day-mode .contact-button, body.day-mode .animal-test-button {
   background-color: #ffb703;
   color: #333;
 }
 
-body.day-mode .contact-button:hover {
+body.day-mode .contact-button:hover, body.day-mode .animal-test-button:hover {
   background-color: #ffa000;
 }
 
-.contact-container {
+.contact-container, .animal-test-container {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
@@ -252,13 +254,13 @@ body.day-mode .contact-button:hover {
     box-sizing: border-box;
 }
 
-.contact-container h1 {
+.contact-container h1, .animal-test-container h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-.contact-container form label {
+.contact-container form label, .animal-test-container label {
     display: block;
     margin-bottom: 8px;
     color: #555;
@@ -266,7 +268,9 @@ body.day-mode .contact-button:hover {
 
 .contact-container form input[type="text"],
 .contact-container form input[type="email"],
-.contact-container form textarea {
+.contact-container form textarea,
+.animal-test-container .file-input,
+.animal-test-container .action-button {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -284,7 +288,7 @@ body.day-mode .contact-button:hover {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
-.contact-container form button {
+.contact-container form button, .animal-test-container .action-button {
     background-color: #007bff;
     color: white;
     padding: 12px 20px;
@@ -295,7 +299,7 @@ body.day-mode .contact-button:hover {
     width: 100%;
 }
 
-.contact-container form button:hover {
+.contact-container form button:hover, .animal-test-container .action-button:hover {
     background-color: #0056b3;
 }
 
@@ -318,6 +322,59 @@ body.day-mode .contact-button:hover {
 .back-to-main a:hover {
   background-color: #5a6268; /* Darker grey on hover */
   text-decoration: none; /* Remove underline on hover */
+}
+
+/* Animal Test Specific Styles */
+.animal-test-container {
+    text-align: center;
+}
+
+.animal-test-container p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.image-preview-area {
+    margin: 20px auto;
+    width: 250px;
+    height: 250px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+}
+
+#uploaded-image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+#upload-placeholder {
+    color: #999;
+    font-style: italic;
+    position: absolute;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.prediction-result div {
+    font-weight: normal;
+    margin-top: 5px;
+    color: #555;
 }
 
 
