@@ -216,20 +216,30 @@ body.day-mode #generate-btn {
 
 /* Contact form specific styles */
 .contact-button {
-  border: 1px solid var(--card-border);
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--text-main);
+  background-color: #ffb703; /* Highlight color */
+  color: #333; /* Darker text for contrast */
   font-weight: 700;
   padding: 8px 12px;
-  border-radius: 999px;
+  border-radius: 10px; /* Slightly rounded */
   cursor: pointer;
-  text-decoration: none; /* For the link to look like a button */
-  white-space: nowrap; /* Prevent wrapping */
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #ffa000; /* Darker hover */
 }
 
 body.day-mode .contact-button {
-  background: #ffffff;
-  color: var(--btn);
+  background-color: #ffb703;
+  color: #333;
+}
+
+body.day-mode .contact-button:hover {
+  background-color: #ffa000;
 }
 
 .contact-container {
@@ -295,13 +305,21 @@ body.day-mode .contact-button {
 }
 
 .back-to-main a {
-  color: #007bff;
+  display: inline-block; /* Make it block-level for padding/margins */
+  background-color: #6c757d; /* Grey button color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
   text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
 }
 
 .back-to-main a:hover {
-  text-decoration: underline;
+  background-color: #5a6268; /* Darker grey on hover */
+  text-decoration: none; /* Remove underline on hover */
 }
+
 
 @media (max-width: 640px) {
   body {
